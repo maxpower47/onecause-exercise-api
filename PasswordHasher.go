@@ -8,6 +8,7 @@ type PasswordHasher interface {
 }
 
 type BcryptPasswordHasher struct {
+	cost int
 }
 
 func (bcryptPasswordHasher BcryptPasswordHasher) ComparePasswords(hashedPwd string, plainPwd string) bool {
@@ -18,6 +19,6 @@ func (bcryptPasswordHasher BcryptPasswordHasher) ComparePasswords(hashedPwd stri
 // not actually used here, except to compute the user's password hash once,
 // would normally be used when setting or changing a password
 func (bcryptPasswordHasher BcryptPasswordHasher) HashAndSalt(pwd string) string {
-	hash, _ := bcrypt.GenerateFromPassword([]byte(pwd), bcrypt.MinCost)
+	hash, _ := bcrypt.GenerateFromPassword([]byte(pwd), bcryptPasswordHasher.cost)
 	return string(hash)
 }

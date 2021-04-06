@@ -14,3 +14,5 @@ token
 
 - A real login service would of course need to be hosted with TLS
 - Would want unit tests as appropriate
+- Other security measures like rate limiting, CAPTCHA, account lockouts may be appropriate
+- Other security response headers should be included, e.g. Strict-Transport-Security, Content-Security-Policy, etc
